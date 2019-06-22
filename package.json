@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "danger:ci": "danger ci",
-    "danger:pr:test": "danger pr",
+    "danger:pr": "danger pr",
     "danger:pr:test": "danger pr https://github.com/halkeye/test-danger-js/pull/1"
   },
   "repository": {
