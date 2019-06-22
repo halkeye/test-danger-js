@@ -18,8 +18,10 @@ pipeline {
     }
 
     stage('Danger CI') {
+      environment {
+        DANGER_GITHUB_API_TOKEN = credentials('github-halkeye')
+      }
       steps {
-        sh 'env'
         sh 'npm run danger:ci'
       }
     }
