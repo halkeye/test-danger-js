@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "danger:ci": "danger ci",
+    "danger:pr:test": "danger pr",
+    "danger:pr:test": "danger pr https://github.com/halkeye/test-danger-js/pull/1"
   },
   "repository": {
     "type": "git",
@@ -19,13 +21,13 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "core-js": "^2.6.9",
     "danger": "^8.0.0",
+    "danger-plugin-commit-lint": "^1.0.1",
     "danger-plugin-fixme": "^1.0.0",
     "danger-plugin-jira-issue": "^1.4.1",
-    "danger-plugin-labels": "^2.1.1",
-    "danger-plugin-no-console": "^1.1.2",
     "danger-plugin-spellcheck": "^1.2.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "core-js": "^2.6.9"
+  }
 }
