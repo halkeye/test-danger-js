@@ -17,7 +17,7 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Danger CI') {
       steps {
         sh 'npm run danger:ci'
       }
