@@ -6,7 +6,7 @@
   "scripts": {
     "danger:ci": "danger ci",
     "danger:pr": "danger pr",
-    "danger:pr:test": "danger pr https://github.com/halkeye/test-danger-js/pull/1"
+    "danger:pr:test": "danger pr https://github.com/halkeye/test-danger-js/pull/2"
   },
   "repository": {
     "type": "git",

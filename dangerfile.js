@@ -6,7 +6,7 @@ import spellcheck from "danger-plugin-spellcheck"
 import * as commitLint from 'danger-plugin-commit-lint'
 
 
-const getStart = pattern => (_includes(["a", "e", "i", "o", "u"], pattern[0].toLowerCase()) ? "an" : "a")
+const getStart = pattern => ["a", "e", "i", "o", "u"].find(vowel => pattern.startsWith(vowel.toLowerCase())) ? "an" : "a";
 
 /**
  * Have danger fail if she detects a FIXME annotation inside your code.
@@ -16,10 +16,10 @@ function fixme(patterns = ["FIXME"]) {
 
   for (const file of newOrModifiedFiles) {
     const content = readFileSync(file).toString()
-    const match = patterns.find(p => _includes(content, p))
-
-    if (match) {
-      fail(`${getStart(match)} \`${match}\` was left in: ${file}`)
+    for (const pattern of patterns) {
+      if (content.includes(pattern)) {
+        fail(`${getStart(pattern)} \`${pattern}\` was left in: ${file}`)
+      }
     }
   }
 }
@@ -76,8 +76,13 @@ function fixme(patterns = ["FIXME"]) {
   //  }
   //}))
 
-  const modifiedMD = danger.git.modified_files.join("- ")
-  message("Changed Files in this PR: \n - " + modifiedMD)
+  if (danger.git.modified_files.length) {
+    message("Changed Files in this PR: \n" + danger.git.modified_files.map(file => `- ${file}`).join("\n"))
+  }
+
+  if (danger.git.created_files.lenght) {
+    message("Created Files in this PR: \n" + danger.git.created_files.map(file => `- ${file}`).join("\n"))
+  }
 
   // Provides advice if a summary section is missing, or body is too short
   const includesSummary = prBody && prBody.toLowerCase().includes("## summary");
@@ -90,20 +95,20 @@ function fixme(patterns = ["FIXME"]) {
     message(`${title} - <i>${idea}</i>`);
   }
 
-  const modifiedAppFiles = danger.git.modified_files;
-  const hasAppChanges = modifiedAppFiles.length > 0;
+  //const modifiedAppFiles = danger.git.modified_files;
+  //const hasAppChanges = modifiedAppFiles.length > 0;
 
-  const testChanges = modifiedAppFiles.filter(filepath =>
-    filepath.includes("test"),
-  );
-  const hasTestChanges = testChanges.length > 0;
+  //const testChanges = modifiedAppFiles.filter(filepath =>
+  //  filepath.includes("test"),
+  //);
+  //const hasTestChanges = testChanges.length > 0;
 
-  // Warn if there are library changes, but not tests
-  if (hasAppChanges && !hasTestChanges) {
-    warn(
-      "There are library changes, but not tests. That's OK as long as you're refactoring existing code",
-    );
-  }
+  //// Warn if there are library changes, but not tests
+  //if (hasAppChanges && !hasTestChanges) {
+  //  warn(
+  //    "There are library changes, but not tests. That's OK as long as you're refactoring existing code",
+  //  );
+  //}
 
 
   markdown(`
