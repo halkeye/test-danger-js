@@ -1,0 +1,19 @@
+{
+  "name": "test-danger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halkeye/test-danger-js.git"
+  },
+  "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halkeye/test-danger-js/issues"
+  },
+  "homepage": "https://github.com/halkeye/test-danger-js#readme"
+}
