@@ -14,7 +14,7 @@ const getStart = pattern => ["a", "e", "i", "o", "u"].find(vowel => pattern.star
 function fixme(patterns = ["FIXME"]) {
   const newOrModifiedFiles = danger.git.modified_files.concat(danger.git.created_files)
 
-  for (const file of newOrModifiedFiles) {
+  for (const file of newOrModifiedFiles.filter(f => f !== __filename)) {
     const content = readFileSync(file).toString()
     for (const pattern of patterns) {
       if (content.includes(pattern)) {
