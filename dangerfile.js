@@ -1,10 +1,28 @@
 import { message, danger, schedule } from "danger"
 import { readFileSync } from "fs";
-import fixme from "danger-plugin-fixme"
 import jiraIssue from "danger-plugin-jira-issue"
 //import labels from "danger-plugin-labels"
 import spellcheck from "danger-plugin-spellcheck"
 import * as commitLint from 'danger-plugin-commit-lint'
+
+
+const getStart = pattern => (_includes(["a", "e", "i", "o", "u"], pattern[0].toLowerCase()) ? "an" : "a")
+
+/**
+ * Have danger fail if she detects a FIXME annotation inside your code.
+ */
+function fixme(patterns = ["FIXME"]) {
+  const newOrModifiedFiles = danger.git.modified_files.concat(danger.git.created_files)
+
+  for (const file of newOrModifiedFiles) {
+    const content = readFileSync(file).toString()
+    const match = patterns.find(p => _includes(content, p))
+
+    if (match) {
+      fail(`${getStart(match)} \`${match}\` was left in: ${file}`)
+    }
+  }
+}
 
 (function main() {
   const prTemplate = readFileSync('.github/PULL_REQUEST_TEMPLATE.md').toString().replace(/\n\r|\r\n|\n|\r/g, '\n')

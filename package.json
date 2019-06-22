@@ -23,7 +23,6 @@
     "@babel/preset-env": "^7.4.5",
     "danger": "^8.0.0",
     "danger-plugin-commit-lint": "^1.0.1",
-    "danger-plugin-fixme": "^1.0.0",
     "danger-plugin-jira-issue": "^1.4.1",
     "danger-plugin-spellcheck": "^1.2.3"
   },
