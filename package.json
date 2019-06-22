@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/halkeye/test-danger-js/issues"
   },
-  "homepage": "https://github.com/halkeye/test-danger-js#readme"
+  "homepage": "https://github.com/halkeye/test-danger-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "core-js": "^2.6.9",
+    "danger": "^8.0.0",
+    "danger-plugin-fixme": "^1.0.0",
+    "danger-plugin-jira-issue": "^1.4.1",
+    "danger-plugin-labels": "^2.1.1",
+    "danger-plugin-no-console": "^1.1.2",
+    "danger-plugin-spellcheck": "^1.2.3"
+  },
+  "dependencies": {}
 }
