@@ -77,11 +77,11 @@ function fixme(patterns = ["FIXME"]) {
   //}))
 
   if (danger.git.modified_files.length) {
-    message("Changed Files in this PR: \n" + danger.git.modified_files.map(file => `- ${file}`).join("\n"))
+    markdown("Changed Files in this PR: \n" + danger.git.modified_files.map(file => `- ${file}`).join("\n"))
   }
 
   if (danger.git.created_files.lenght) {
-    message("Created Files in this PR: \n" + danger.git.created_files.map(file => `- ${file}`).join("\n"))
+    markdown("Created Files in this PR: \n" + danger.git.created_files.map(file => `- ${file}`).join("\n"))
   }
 
   // Provides advice if a summary section is missing, or body is too short
